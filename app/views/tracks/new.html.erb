@@ -1,0 +1,16 @@
+
+<main class="tracks">
+  <div class="container">
+
+        <%= form_for :@track, url: '/tracks' do |f| %>
+          Artist: <%= f.collection_select :band_id, Band.all, :id, :name, :prompt => "Select a Band" %>
+          Album: <%= f.collection_select :album_id, Album.all, :id, :name, :prompt => "Select a Album" %>
+          Name of Song: <%= f.text_field :name %>
+          <%= f.submit "Submit" %>
+
+        <% end %>
+
+
+      </div>
+    </div>
+</main>>

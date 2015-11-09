@@ -1,10 +1,41 @@
 Rails.application.routes.draw do
 
 
+  get 'sessions/new'
+
 #  get 'users/new'
 
   root 'home_pages#index'
+
+  get    'login'   => 'sessions#new'
+post   'login'   => 'sessions#create'
+delete 'logout'  => 'sessions#destroy'
+
   resources :users, only: [:create, :new, :show, :index]
+
+  resources :albums do
+    member do
+      get 'favorite'
+      put 'favorite'
+      get 'favorite_song'
+      put 'favorite_song'
+    end
+
+  end
+  resources :bands do
+    member do
+      get 'favorite'
+      put 'favorite'
+    end
+  end
+
+  resources :tracks do
+    member do
+      get 'favorite'
+      put 'favorite'
+    end
+  end
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

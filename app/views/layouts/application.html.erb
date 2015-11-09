@@ -5,17 +5,30 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
 </head>
 <body>
   <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
-      <h1>Recordly</h1>
+      <aside class="left">Recordly</aside>
+      <% if logged_in? %>
+        <aside class="right"><ul class='home_nav'>
+          <li><%= link_to 'Albums', albums_path %></li>
+          <li><%= link_to 'Artists', bands_path %></li>
+          <li><%= link_to 'Records', tracks_path %></li>
+          <li><%= link_to "Log out", logout_path, method: "delete" %></li>
+        </ul></aside>
+      <% else %>
+      <ul>
+        <li><%= link_to 'Log in', login_path%></li>
+      </ul>
+      <% end %>
     </div>
   </header>
-  <div class="container">
-    <h1>Welcome Home</h1>
+
     <%= yield %>
-  </div>
+
 
 </body>
 </html>

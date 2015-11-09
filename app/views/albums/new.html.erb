@@ -1,0 +1,24 @@
+
+<main class='albums'>
+  <div class="container">
+
+        <%= form_for :@album, url: '/albums' do |f| %>
+          <label for="band_name">Band</label>
+
+            <select class="" name="id" id="band_name" data-placeholder="Select the movie">
+              <option value=''></option>
+              <% @bands.each do |band| %>
+                 <option name = "id" value="<%= band.id %>"> <%= band.name %></option>
+              <% end %>
+            </select>
+
+          Name of Album: <%= f.text_field :name %>
+          Year of Album: <%= f.text_field :year %>
+          <%= f.submit "Submit" %>
+
+        <% end %>
+
+
+      </div>
+    </div>
+</main>

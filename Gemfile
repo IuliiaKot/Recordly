@@ -35,11 +35,19 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 
 
+
 group :development, :test do
-  gem 'sqlite3'
   gem 'byebug'
+gem 'sqlite3'
   gem 'web-console', '~> 2.0'
+
   gem 'spring'
+
+  gem 'rspec-rails'
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'pry-rails'
+  gem 'quiet_assets'
 
 end
 

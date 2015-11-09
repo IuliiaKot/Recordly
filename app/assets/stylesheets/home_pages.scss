@@ -1,3 +1,32 @@
 // Place all the styles related to the HomePages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.home {
+  margin-top: 45px;
+}
+
+
+.left {
+  font-size:  20px;
+  margin-top: 10px;
+  float: left;
+  color: #677998;
+  width: 30%;
+}
+
+.right{
+  float: right;
+  width: 70%;
+  margin-top: 10px;
+}
+
+header {
+  background: white;
+}
+
+
+
+//albums
+.albums {
+  margin-top: 70px;
+}
