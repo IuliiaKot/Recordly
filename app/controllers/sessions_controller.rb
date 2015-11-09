@@ -1,21 +1,27 @@
 class SessionsController < ApplicationController
-  def new
-  end
+  before_action :require_no_user!, only: [:create, :new]
 
-  def create
-    user = User.find_by(email: params[:session][:email].downcase)
-    if user && user.authenticate(params[:session][:password])
-      log_in user
-      redirect_to user
-    else
-      flash[:danger] = 'Invalid email/password combination'
-      render 'new'
+    def create
+      user = User.find_by_credentials(
+        params[:user][:username],
+        params[:user][:password]
+      )
+      if user.nil?
+        flash.now[:errors] = ["Incorrect username and/or password"]
+        render :new
+      else
+        login_user!(user)
+        redirect_to albums_url
+      end
     end
-  end
 
-  def destroy
-    log_out if logged_in?
-    redirect_to root_url
-  end
+    def destroy
+      logout_user!
+      redirect_to new_session_url
+    end
+
+    def new
+      render :new
+    end
 
 end

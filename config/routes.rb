@@ -7,11 +7,8 @@ Rails.application.routes.draw do
 
   root 'home_pages#index'
 
-  get    'login'   => 'sessions#new'
-post   'login'   => 'sessions#create'
-delete 'logout'  => 'sessions#destroy'
-
-  resources :users, only: [:create, :new, :show, :index]
+  resource :session, only: [:create, :destroy, :new]
+  resources :users, only: [:create, :new]
 
   resources :albums do
     member do

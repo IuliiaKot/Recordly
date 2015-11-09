@@ -1,41 +1,21 @@
 
 
 <main class='albums'>
+        <h2 class='text-center'>Albums</h2>
   <div class="row text-center " >
-    <%= link_to 'See favorites albums', new_album_path, class: 'btn btn-default' %>
+    <%= link_to 'All Albums', albums_path, class: 'btn btn-default' %>
     <%= link_to 'Add a new album', new_album_path, class: 'btn btn-default' %>
+    <%= link_to 'See favorites albums', albums_path(favorite: true), class: 'btn btn-default' %>
   </div>
 
 
   <div class="container">
     <div class="row">
-
-
-      <% @albums.each do |album|%>
-
-        <div class="col-md-4 col-sm-6">
-          <%= link_to album_path(album.id) do %>
-            <div class="thumbnail">
-
-            <div class="cover">
-              <h3 class='band'><%= album.band.name%></h3>
-            </div>
-              <div class="caption">
-                <h4 class="title"><%= album.name %> <%= album.year%></h4>
-                <p class="artist"><%= album.band.name %></p>
-              </div>
-            </div>
-            <% end %>
-            <div class="">
-              <% if album.favorite %>
-                <%= link_to "",  favorite_album_path(album), class: ' fa fa-star-o favorite', method: :put %>
-              <% else %>
-                <%= link_to "",  favorite_album_path(album), class: ' fa fa-star-o', method: :put %>
-              <% end %>
-              <%= link_to "", { action: :destroy, id: album.id }, class: ' fa fa-trash', method: :delete  %>
-            </div>
-          </div>
-        <% end %>
+      <% if params[:favorite]%>
+        <%= render 'favorite_albums'%>
+      <% else %>
+        <%= render 'all_albums'%>
+      <% end %>
     </div>
 
   </div>

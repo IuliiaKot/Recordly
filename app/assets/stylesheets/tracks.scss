@@ -4,6 +4,10 @@
 
 .tracks {
   margin-top: 70px;
+    color: #677998;
+}
+.single-tr{
+  margin-top: 20px;
 }
 
 .fa-star-o{
@@ -14,18 +18,20 @@
   height: 20px;
 }
 
+a:hover{
+  text-decoration: none;
+}
+
 .fa-star-o:hover {
-  color: #872309;
+  color: yellow;
    text-shadow: 1px 1px 3px #ff0000;
 }
 
 .favorite {
-  color: #872309;
+  color: #870309;
    text-shadow: 1px 1px 3px #ff0980;
 }
 
-
-.tracks .row {
-  padding-bottom: 20px;
-
+.btn {
+  margin-top: 20px;
 }

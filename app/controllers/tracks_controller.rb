@@ -1,37 +1,49 @@
 class TracksController < ApplicationController
+  before_action :require_user!
+  before_action :get_user_id
 
   def index
-    @tracks = Track.all
+    if params[:favorite]
+      @tracks_favorite = Track.where(:user_id => current_user.id, :favotite => true).all
+    else
+      @tracks = Track.where(:user_id => current_user.id).all
+    end
   end
+
+
 
   def new
     @track = Track.new
   end
 
   def create
-    track = Track.new(track_params)
-    if track.save
+  #  track = Track.new(track_params)
+    @track = current_user.tracks.new(track_params)
+    if @track.save
       redirect_to '/tracks'
     else
-      redirect_to '/tracks/new'
+      flash.now[:errors] = @track.errors.full_messages
+      render 'new'
     end
   end
 
   def favorite
-    favor = Track.find(params[:id])[:favorite]
+
+    favor = Track.where(:user_id => current_user.id).find(params[:id])[:favotite]
     if favor
-      Track.update(params[:id], :favorite => false)
+      Track.where(:user_id => current_user.id).update(params[:id], :favotite => false)
       redirect_to :back
     else
-      Track.update(params[:id], :favorite => true)
-      redirect_to :back
+      Track.where(:user_id => current_user.id).update(params[:id], :favotite => true)
+
+      redirect_to  :back
     end
     # Track.update(params[:id], :favorite => favor)
     # redirect_to '/tracks'
   end
 
   def destroy
-    @track = Track.find(params[:id])
+    @track = Track.where(:user_id => get_user_id).find(params[:id])
     @track.destroy
     redirect_to '/tracks'
   end

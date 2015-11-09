@@ -1,19 +1,32 @@
-<% provide(:title, 'Sign up') %>
-<h1>Sign up</h1>
 
-<div class="container">
+
+<div class="container user">
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
-      <%= form_for(@user)  do |f| %>
-        <%= render 'shared/error_messages'%>
 
-        Name: <%= f.text_field :name, class: 'form-control' %>
-        Email: <%= f.text_field :email, class: 'form-control' %>
-        Password: <%= f.password_field :password, class: 'form-control' %>
-        Password Confirmation: <%= f.password_field :password_confirmation, class: 'form-control' %>
-        <%= f.submit "Create an account", class: 'btn btn-primary' %>
+      <form action="<%= users_url %>" method="post">
+        <h1 class='text-center'>New User</h1>
+        <input
+          type="hidden"
+          name="authenticity_token"
+          value="<%= form_authenticity_token %>">
+         <%= render "shared/errors" %>
+        <label for="user_username">User Name</label>
+        <input type="text"
+               name="user[username]"
+               id="user_username"
+               class='form-control'
+               value="<%= @user.username %>">
+        <label for="user_password">Password</label>
+        <input type="password"
+               name="user[password]"
+               id="user_password"
+               class='form-control'
+               value="<%= @user.password %>">
+        <br>
 
-      <% end %>
+        <input type="submit" class='btn btn-primary'>
+      </form>
     </div>
   </div>
 </div>

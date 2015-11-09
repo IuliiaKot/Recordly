@@ -1,6 +1,19 @@
 // Place all the styles related to the HomePages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+a:hover {
+  text-decoration: none;
+}
+
+a:hover .thumbnail img {
+  opacity: 0.5;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .home {
   margin-top: 45px;
 }
@@ -23,7 +36,6 @@
 header {
   background: white;
 }
-
 
 
 //albums

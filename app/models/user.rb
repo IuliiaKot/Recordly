@@ -1,24 +1,54 @@
 class User < ActiveRecord::Base
-  before_save { self.email = email.downcase }
-  validates :name, :email, presence: true
-  validates :email, uniqueness: true
+  attr_reader :password
 
-  has_secure_password
-  validates :password, presence: true, length: { minimum: 6 }
+  has_many :albums
+  has_many :bands
+  has_many :tracks
 
-  def self.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
-                                                BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
+  after_initialize :ensure_session_token
+
+  validates :password_digest, presence: true
+  validates :password, length: { minimum: 6, allow_nil: true}
+
+  validates :session_token, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
+
+  def self.find_by_credentials(username, password)
+    user = User.find_by(username: username)
+
+    return nil if user.nil?
+    user.is_password?(password) ? user : nil
   end
 
-  def self.new_token
-    SecureRandom.urlsafe_base64
+  def is_password?(password)
+    BCrypt::Password.new(self.password_digest).is_password?(password)
   end
 
-  # Returns true if the given token matches the digest.
-  def authenticated?(remember_token)
-    return false if remember_digest.nil?
-    BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  def owns_band?(cat)
+    band.user_id == self.id
   end
+  def owns_album?(cat)
+    album.user_id == self.id
+  end
+  def owns_track?(cat)
+    track.user_id == self.id
+  end
+
+  def password=(password)
+    @password = password
+    self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def reset_session_token!
+    self.session_token = SecureRandom.urlsafe_base64(16)
+    self.save!
+    self.session_token
+  end
+
+  private
+
+  def ensure_session_token
+    self.session_token ||= SecureRandom.urlsafe_base64(16)
+  end
+
 end

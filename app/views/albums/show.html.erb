@@ -15,12 +15,11 @@
         <div class="track row">
           <% @album.tracks.each do |track|%>
           <div class="name col-md-8"><%= track.name%>
-            <% if track.favorite %>
-              <%= link_to "",  favorite_song_album_path(track), class: ' fa fa-star-o favorite', method: :put %>
+            <% if track.favotite %>
+              <%= link_to "",  favorite_track_path(track), class: ' fa fa-star-o favorite', method: :put %>
             <% else %>
-              <%= link_to "",  favorite_song_album_path(track), class: ' fa fa-star-o', method: :put %>
+              <%= link_to "",  favorite_track_path(track), class: ' fa fa-star-o', method: :put %>
             <% end %>
-
           </div>
           <% end %>
         </div>
