@@ -1,5 +1,17 @@
 ###Recordly###
 
+Intsall:
+
+Clone repo on computer
+
+Run bundle install
+
+Create a new User
+
+Run rake db:seed
+
+Thank log in in app with you user.
+
 _Recordly_ will be an application that allows for users to input and store their record collection.  When complete, the user should be able to view their record collection, view a list of their "favorite" albums and/or songs, etc.  Duplicate albums/songs should not be allowed.  They should be able to "favorite" any of album/song/artist.
 
 The site should have the following functionality:
