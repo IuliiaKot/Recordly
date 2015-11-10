@@ -10,9 +10,6 @@ a:hover .thumbnail img {
   opacity: 0.5;
 }
 
-body {
-  font-family: 'Roboto', sans-serif;
-}
 
 .home {
   margin-top: 45px;
@@ -25,18 +22,30 @@ body {
   float: left;
   color: #677998;
   width: 30%;
+  font-family: 'Playfair Display', serif;
+
 }
 
 .right{
   float: right;
   width: 70%;
   margin-top: 10px;
+  font-family: 'Playfair Display', serif;
 }
 
-header {
-  background: white;
+.welcome {
+  margin-top: 150px;
+  font-stretch: extra-condensed;
+  font-family: 'Playfair Display', serif;
 }
 
+.bnt-left{
+  padding-left: 150px;
+//  float: left;
+}
+.btn-right{
+  //float: left;
+}
 
 //albums
 .albums {

@@ -6,4 +6,9 @@ class Album < ActiveRecord::Base
   validates :name, uniqueness: {scope: :band_id}, presence: true
   # validates :band_id, presence: true,  uniqueness: true
   # validates :name, presence: true,  uniqueness: true
+
+
+  def self.search(query)
+    Album.find_by(name: query)
+  end
 end

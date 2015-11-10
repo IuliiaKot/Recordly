@@ -3,6 +3,7 @@ class AlbumsController < ApplicationController
   before_action :get_user_id
 
   def index
+    
     if params[:favorite]
       @albums_favorite = Album.where(:user_id => current_user.id, :favotite => true).all
     else

@@ -5,9 +5,13 @@
 //   padding-bottom: 10px;
 //
 // }
+.albums{
+    font-family: 'Playfair Display', serif;
+}
 .my-body{
   background: #1c1c1e;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Playfair Display', serif;
+  color: #677998;
 }
 .thumbnail {
 
@@ -33,4 +37,13 @@
 }
 .mssg{
   color: white;
+}
+
+.name-tracks{
+  font-size: 16px;
+  margin-left: 30px;
+}
+
+.name-tracks {
+  padding-bottom: 6px;
 }
